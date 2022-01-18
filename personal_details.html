@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Personal Details : Form</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<style type="text/css">
+		body{
+			margin: 0px;
+			padding: 0px;
+			box-sizing: border-box;
+			background: linear-gradient(320deg, #00fff3, #ad00ff);
+			background-repeat: no-repeat;
+			height: 100vh;
+		}
+		.container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 97vh;
+		}
+
+		.container form {
+			display: flex;
+			flex-direction: column;
+			background: #86d9fb;
+			padding: 110px 50px;
+			max-width: 250px;
+			width: 100%;
+			border-radius: 30px;
+		}
+		.container form input:not(input[type="submit"]){
+			padding: 10px 10px;
+			border: none;
+			border-bottom: 2px solid #0014ff;
+		}
+		.container form input[type="submit"]{
+			padding: 15px 27px;
+			font-family: system-ui;
+			font-size: xx-large;
+			font-weight: bold;
+			background: cadetblue;
+			border: none;
+			border-radius: 60px;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="container">
+		<form method="post" action="thank_you.html" onsubmit="return nameCheck()">
+			<label for="fname">Full Name</label>
+			<input id="fname" type="text" name="fname" placeholder="Full Name" required="true" onkeyup="nameCheck(this.value)" onkeyup="this.value=this.value.replace(/[^\d]/,'')"/>
+			</br>
+			<label for="email">Email</label>
+			<input id="email" type="email" name="email" placeholder="E-Mail" required="true" onkeydown="emailCheck(this.value)"/>
+			</br>
+
+			<label for="phone">Phone</label>
+			<input id="phone" type="text" name="phone" placeholder="Phone" required="true" onkeyup="numberCheck(this.value)"/>
+			</br>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+	function nameCheck(fName){
+		
+		//for acceptable Characters
+		if(/[\d(~`!@#$%^&*_\-=+{}\[\]:;"'<>,.?\/)]/g.test(fName)){
+			console.log("Not Acceptable Characters");
+
+			return fName = fName.replace(/[\d(~`!@#$%^&*_\-=+{}\[\]:;"'<>,.?\/)]/g, "");
+		}
+		//for each word length and character lenght
+		if(fName.match(/\b(\w{4,})/g).length != null && fName.match(/\b(\w{4,})/g).length < 2){
+			console.log("There should minimum 2 words atleast consists of minimum 4 char per");
+			return false;
+		}
+	}
+	// function emailCheck(){
+	// 	var uEmail = document.getElementById("email").value;
+		
+	// 	console.log(/@[a-zA-Z0-9.]+$/g.test(uEmail))
+	// }
+
+	// function numberCheck(){
+	// 	/^\(\d{3}\)\-\-?\d{3}\-\d{4}$/g
+	// }
+</script>
+</html>
